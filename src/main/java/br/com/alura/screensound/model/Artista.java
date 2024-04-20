@@ -21,18 +21,25 @@ import jakarta.persistence.Table;
 @Table(name = "artistas")
 
 public class Artista {
-    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     @Column(unique = true)
     private String nome;
     @Enumerated(EnumType.STRING)
     private TipoArtista tipo;
-    
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "artista", fetch = FetchType.EAGER)
+
+    @OneToMany(mappedBy = "artista", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Musica> musicas = new ArrayList<>();
+
+    public Artista() {
+    }
+
+    public Artista(String nome, TipoArtista tipo) {
+        this.nome = nome;
+        this.tipo = tipo;
+    }
 
     public Long getId() {
         return id;
@@ -70,8 +77,5 @@ public class Artista {
     public String toString() {
         return "[Artista= " + nome + ", tipo= " + tipo + ", musicas= " + musicas + "]";
     }
-
-    
-    
 
 }

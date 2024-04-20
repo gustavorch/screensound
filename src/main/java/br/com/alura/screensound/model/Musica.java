@@ -4,6 +4,7 @@ import org.hibernate.annotations.ManyToAny;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -18,9 +19,17 @@ public class Musica {
     
     private Long id;
     private String titulo;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Artista artista;
+
+    public Musica(){
+
+    }
     
+    public Musica(String nomeMusica) {
+        this.titulo = nomeMusica;
+    }
+
     public Long getId() {
         return id;
     }
@@ -41,7 +50,7 @@ public class Musica {
     }
     @Override
     public String toString() {
-        return "[Música= " + titulo + ", artista= " + artista + "]";
+        return "[Música= " + titulo + ", artista= " + artista.getNome() + "]";
     }
 
     
