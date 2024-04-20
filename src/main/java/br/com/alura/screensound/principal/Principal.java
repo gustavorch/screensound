@@ -63,18 +63,19 @@ public class Principal {
     }
 
     private void pesquisarDadosDoArtista() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'pesquisarDadosDoArtista'");
+        //Método não implementado que utiliza o ChatGPT
     }
 
     private void buscarMusicasPorArtista() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'buscarMusicasPorArtista'");
+        System.out.println("Buscar músicas de que artista?");
+        var nome = leitura.nextLine();
+        List<Musica> musicas = repositorio.buscaMusicasPorArtista(nome);
+        musicas.forEach(System.out::println);
     }
 
     private void listarMusicas() {
         List<Artista> artistas = repositorio.findAll();
-        artistas.forEach(System.out::println);
+        artistas.forEach(a -> System.out.println(a.getMusicas()));
     }
 
     private void cadastrarMusicas() {
